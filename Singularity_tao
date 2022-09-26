@@ -1,0 +1,28 @@
+Bootstrap: docker
+From: nvcr.io/nvidia/tao/tao-toolkit-tf:v3.22.05-tf1.15.5-py3
+
+%environment
+    export XDG_RUNTIME_DIR=
+    export PATH="$PATH:/usr/local/bin"
+    export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
+    echo "export PATH=\"\$PATH:$(pwd)/ngc-cli\"" >> ~/.bash_profile && source ~/.bash_profile
+
+%post
+    # Download and install NGC CLI binary
+    cd /opt
+    wget https://ngc.nvidia.com/downloads/ngccli_linux.zip
+    unzip -q /opt/ngccli_linux.zip -d /opt
+    rm /opt/ngccli_linux.zip
+    
+    # Install jupyterlab and packages
+    pip3 install jupyterlab \
+    ipywidgets \
+    matplotlib \
+    fiftyone
+    
+%runscript
+    "$@"
+
+%labels
+    Author Massimiliano, Tosin
+    

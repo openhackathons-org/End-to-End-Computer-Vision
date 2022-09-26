@@ -1,0 +1,38 @@
+# Spec file for tao-augment
+
+# Spatial augmentation config
+spatial_config{
+  flip_config{
+    flip_horizontal: true
+  }
+  rotation_config{
+    angle: 10.0
+    units: "degrees"
+  }
+  translation_config{
+    translate_y: 20
+  }
+}
+
+# Color augmentation config
+color_config{
+  hue_saturation_config{
+    hue_rotation_angle: 10.0
+    saturation_shift: 1.0
+  }
+  brightness_config{
+    offset: 10
+  }
+}
+
+# Blur config
+blur_config{
+  size: 5
+  std: 1.0
+}
+
+# Data dimensions
+output_image_width: 640
+output_image_height: 384
+output_image_channel: 3
+image_extension: ".png"
