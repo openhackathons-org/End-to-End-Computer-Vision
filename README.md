@@ -120,7 +120,7 @@ TAO Toolkit is a Python pip package that is hosted on the NVIDIA PyIndex. The pa
    For more info, visit the [TAO Toolkit documentation](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html).
 
 4. Install other dependencies needed to run the lab:
-    `pip install jupyterlab matplotlib fiftyone attrdict tqdm`
+    `pip install jupyterlab matplotlib fiftyone attrdict tqdm gdown`
     `pip install nvidia-pyindex tritonclient[all]`
 
 ## Run the Lab

@@ -28,7 +28,7 @@ model-color-format=1
 ## Path to yolo_v4 labels.txt
 labelfile-path=../../yolo_v4/export/labels.txt
 ## Path to generated TensorRT engine
-#model-engine-file=../../yolo_v4/export/trt.engine
+#model-engine-file=../../yolo_v4/export/yolov4_resnet18_epoch_015.etlt_b1_gpu0_fp32.engine
 ## Path to int8-calib-file
 #int8-calib-file=../../yolo_v4/export/cal.bin
 ## Path to exported yolo_v4 model.etlt

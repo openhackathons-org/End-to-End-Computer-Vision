@@ -18,7 +18,8 @@ From: nvcr.io/nvidia/tao/tao-toolkit-tf:v3.22.05-tf1.15.5-py3
     pip3 install jupyterlab \
     ipywidgets \
     matplotlib \
-    fiftyone
+    fiftyone \
+    gdown
     
 %runscript
     "$@"
