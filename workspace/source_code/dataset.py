@@ -1,4 +1,6 @@
-# Copyright (c) 2022 NVIDIA Corporation.  All rights reserved. 
+# Copyright (c) 2022 OpenACC-Standard.org. This material is released by OpenACC-Standard.org, in collaboration with NVIDIA Corporation, 
+# under the Creative Commons Attribution 4.0 International (CC BY 4.0). These materials include references to hardware and software 
+# developed by other entities; all applicable licensing and copyrights apply.
 
 import gdown
 import os
@@ -25,7 +27,7 @@ if not os.path.exists("../source_code/N5/oranges.mp4"):
 else:
     os.remove("oranges.mp4")
 
-if not os.path.exists("../source_code/N5/oranges.mp4"):
+if not os.path.exists("../source_code/N5/oranges"):
     shutil.move("oranges", "../source_code/N5/oranges")
 else:
     shutil.rmtree("oranges")

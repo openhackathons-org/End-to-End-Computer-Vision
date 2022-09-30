@@ -1,9 +1,14 @@
+# Copyright (c) 2022 OpenACC-Standard.org. This material is released by OpenACC-Standard.org, in collaboration with NVIDIA Corporation, 
+# under the Creative Commons Attribution 4.0 International (CC BY 4.0). These materials include references to hardware and software 
+# developed by other entities; all applicable licensing and copyrights apply.
+
 import cv2
 import imutils
 import numpy as np
 
 
 def calc_object_size(img_path, output_path="output", pixels_per_metric=38):
+    """Calculate the size of an object in the image using color thresholding"""
     
     # load image with OpenCV and blur it slightly
     image = cv2.imread(img_path)  
