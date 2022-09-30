@@ -1,18 +1,20 @@
 # End-to-end computer vision bootcamp
 
-This repository contains the material for the **end-to-end computer vision** bootcamp, the goal of which is to build a complete end-to-end computer vision pipeline for an object detection application. This bootcamp will introduce participants to multiple NVIDIA SDKs, most notably TAO Toolkit, TensorRT, DeepStream, and Triton Inference Server. Participants will also have hands-on experience in data preprocessing, model training, optimization, and deployment at scale.
+This repository contains the material for the **end-to-end computer vision** bootcamp, the goal of which is to build a complete end-to-end computer vision pipeline for an object detection application. This bootcamp will introduce participants to multiple NVIDIA® SDKs, most notably NVIDIA TAO Toolkit, NVIDIA TensorRT™, NVIDIA Triton™ Inference Server, and NVIDIA DeepStream SDK. Participants will also have hands-on experience in data preprocessing, model training, optimization, and deployment at scale.
 
-The content is structured in five modules, plus an introductory notebook:
+The content is structured in five modules, plus an introductory notebook and two challenge notebooks:
 - Welcome to **end-to-end computer vision** bootcamp
 - Lab 1: Data labeling and preprocessing
 - Lab 2: Object detection using TAO YOLOv4
-- Lab 3: Model deployment with DeepStream
-- Lab 4: Model deployment with Triton Inference Server
+- Lab 3: Model deployment with Triton Inference Server
+- Lab 4: Model deployment with DeepStream
 - Lab 5: Measure object size using OpenCV
+- Challenge 1: DeepStream SDK
+- Challenge 2: Triton Inference Server
 
 ## Tutorial duration
 
-The total bootcamp material would take approximately 8.5 hours. It is recommended to divide the teaching of the material into two days, covering the first two notebooks in one session and the last three in the next section.
+The total bootcamp material would take approximately 8.5 hours. It is recommended to divide the teaching of the material into two days, covering the first two notebooks (Lab 1 and Lab 2) in one session and the rest in the next session.
 
 ## Running using Singularity
 
@@ -22,9 +24,9 @@ To build the TAO Toolkit singularity container, run: `singularity build --fakero
 
 To build the Triton Inference Server singularity container for the client, run: `singularity build --fakeroot --sandbox triton_client.simg Singularity_triton`
 
-To build the DeepStream singularity container, run: `singularity build --fakeroot --sandbox deepstream.simg Singularity_deepstream`
+To build the DeepStream singularity container, run: `sudo singularity build --sandbox deepstream.simg Singularity_deepstream`
 
-Then, run the first container with: `singularity run --fakeroot --nv -B ~/End_to_end_CV/workspace:/workspace/tao-experiments tao.simg jupyter-lab --no-browser --allow-root --ip=0.0.0.0 --port=8888 --NotebookApp.token="" --notebook-dir=/workspace/tao-experiments`
+Then, run the first container with: `singularity run --fakeroot --nv -B ~/End-to-End-Computer-Vision/workspace:/workspace/tao-experiments tao.simg jupyter-lab --no-browser --allow-root --ip=0.0.0.0 --port=8888 --NotebookApp.token="" --notebook-dir=/workspace/tao-experiments`
 
 The `-B` flag mounts local directories in the container filesystem and ensures changes are stored locally in the project folder. Open jupyter lab in browser: http://localhost:8888 
 
@@ -32,13 +34,13 @@ You may now start working on the lab by clicking on the `Start_here.ipynb` noteb
 
 When you are done with `1.Data_labeling_and_preprocessing.ipynb` and `2.Object_detection_using_TAO_YOLOv4.ipynb`, shut down jupyter lab by selecting `File > Shut Down` in the top left corner, then shut down the Singularity container by typing `exit` or pressing `ctrl d` in the terminal window.
 
-You may now activate the Triton Inference Server client container with: `singularity run --fakeroot --nv -B ~/End_to_end_CV/workspace:/workspace triton_client.simg jupyter-lab --no-browser --allow-root --ip=0.0.0.0 --port=8888 --NotebookApp.token="" --notebook-dir=/workspace`
+You may now activate the Triton Inference Server client container with: `singularity run --fakeroot --nv -B ~/End-to-End-Computer-Vision/workspace:/workspace triton_client.simg jupyter-lab --no-browser --allow-root --ip=0.0.0.0 --port=8888 --NotebookApp.token="" --notebook-dir=/workspace`
 
 Then, open jupyter lab in browser: http://localhost:8888 and continue the lab by running `3.Model_deployment_with_Triton_Inference_Server.ipynb`
 
 As soon as you are done with that, shut down jupyter lab by selecting `File > Shut Down` and the container by typing `exit` or pressing `ctrl d` in the terminal window. 
 
-You are now ready to run the DeepStream container: `singularity run --fakeroot --nv -B ~/End_to_end_CV/workspace:/opt/nvidia/deepstream/deepstream-6.1/workspace deepstream.simg jupyter-lab --no-browser --allow-root --ip=0.0.0.0 --port=8888 --NotebookApp.token="" --notebook-dir=/opt/nvidia/deepstream/deepstream-6.1/workspace`
+You are now ready to run the DeepStream container: `singularity run --fakeroot --nv -B ~/End-to-End-Computer-Vision/workspace:/opt/nvidia/deepstream/deepstream-6.1/workspace deepstream.simg jupyter-lab --no-browser --allow-root --ip=0.0.0.0 --port=8888 --NotebookApp.token="" --notebook-dir=/opt/nvidia/deepstream/deepstream-6.1/workspace`
 
 Again, open jupyter lab in browser: http://localhost:8888 and complete the material by running `4.Model_deployment_with_DeepStream.ipynb` and `5.Measure_object_size_using_OpenCV.ipynb`.
 
@@ -123,7 +125,7 @@ TAO Toolkit is a Python pip package that is hosted on the NVIDIA PyIndex. The pa
     `pip install jupyterlab matplotlib fiftyone attrdict tqdm gdown`
     `pip install nvidia-pyindex tritonclient[all]`
 
-## Run the Lab
+## Run the lab
 
 Activate the conda launcher environment:
     
@@ -133,7 +135,7 @@ You are to run the first two notebooks `1.Data_labeling_and_preprocessing.ipynb`
 
 Launch the jupyter lab with:
 
-`jupyter-lab --no-browser --allow-root --ip=0.0.0.0 --port=8888 --NotebookApp.token="" --notebook-dir=~/End_to_end_CV/workspace` 
+`jupyter-lab --no-browser --allow-root --ip=0.0.0.0 --port=8888 --NotebookApp.token="" --notebook-dir=~/End-to-End-Computer-Vision/workspace` 
 
 Remember to set the `--notebook-dir` to the location where the `project folder` where this material is located.
 
@@ -148,7 +150,7 @@ To start the Triton Inference Server instance, you will need to run a container 
 docker run \
   --gpus=1 --rm \
   -p 8000:8000 -p 8001:8001 -p 8002:8002 \
-  -v ~/End_to_end_CV/workspace/models:/models \
+  -v ~/End-to-End-Computer-Vision/workspace/models:/models \
   nvcr.io/nvidia/tritonserver:22.05-py3 \
   tritonserver \
   --model-repository=/models \
@@ -187,7 +189,7 @@ To run the DeepStream content, build a Docker container by following these steps
 
 - Open a terminal window, navigate to the directory where `Dockerfile_deepstream` is located. 
 - Run `sudo docker build -f Dockerfile_deepstream --network=host -t <imagename>:<tagnumber> .`, for instance: `sudo docker build -f Dockerfile_deepstream --network=host -t deepstream:1.0 .`
-- Next, execute the command: `sudo docker run --rm -it --gpus=all -v ~/End_to_end_CV/workspace:/opt/nvidia/deepstream/deepstream-6.1/workspace --network=host -p 8888:8888 deepstream:1.0`
+- Next, execute the command: `sudo docker run --rm -it --gpus=all -v ~/End-to-End-Computer-Vision/workspace:/opt/nvidia/deepstream/deepstream-6.1/workspace --network=host -p 8888:8888 deepstream:1.0`
 
 flags:
 - `--rm` will delete the container when finished
@@ -206,9 +208,9 @@ As soon as you are done with that, shut down jupyter lab by selecting `File > Sh
 
 Congratulations, you've successfully built and deployed an end-to-end computer vision pipeline!
 
-## Known Issues
+## Known issues
 
-### tao
+### TAO
 When installing the TAO Toolkit Launcher to your host machine’s native python3 as opposed to the recommended route of using a virtual environment, you may get an error saying that `tao binary wasn’t found`. This is because the path to your `tao` binary installed by pip wasn’t added to the `PATH` environment variable in your local machine. In this case, please run the following command:
 
 `export PATH=$PATH:~/.local/bin`
@@ -217,9 +219,29 @@ When installing the TAO Toolkit Launcher to your host machine’s native python3
 
 You can see an error message stating:
 
-`ngc not found, did you mean: ......... `
+`ngc: command not found ...`
 
 You can resolve this by setting the path to ngc within the conda launcher environment as:
 
 `echo "export PATH=\"\$PATH:$(pwd)\"" >> ~/.bash_profile && source ~/.bash_profile`
- 
+
+### Triton Inference Server
+
+You can see in the server logs an error message stating something similar to:
+
+```
+E0930 06:24:12.416803 1 logging.cc:43] 1: [stdArchiveReader.cpp::StdArchiveReader::40] Error Code 1: Serialization (Serialization assertion stdVersionRead == serializationVersion failed.Version tag does not match. Note: Current Version: 213, Serialized Engine Version: 205)
+E0930 06:24:12.423693 1 logging.cc:43] 4: [runtime.cpp::deserializeCudaEngine::50] Error Code 4: Internal Error (Engine deserialization failed.)
+```
+
+The Server container is using a different version of TensorRT than the one the engine was generated with, so the Server is unable to load the model. Make sure to use containers with the same `<yy.mm>` tag when pulling from NGC as this ensures there are no version mismatches. You can verify the version of TAO by running the `tao info` command and then pull the appropriate `nvcr.io/nvidia/tritonserver:yy.mm-py3` Server container to solve the issue.
+
+### DeepStream
+
+You can see when running the pipeline an error similar to:
+
+```
+ERROR: [TRT]: 4: [runtime.cpp::deserializeCudaEngine::50] Error Code 4: Internal Error (Engine deserialization failed.)
+ERROR: ../nvdsinfer/nvdsinfer_model_builder.cpp:1528 Deserialize engine failed from file: /opt/nvidia/deepstream/deepstream-6.1/workspace/yolo_v4/export/trt.engine
+```
+The DeepStream container uses a different version of TensorRT than the one the engine was generated with, so it is unable to use the TensorRT engine for inference. Please set the `tlt-encoded-model` path in the configuration file so that if the engine deserialization fails, DeepStream will attempt to rebuild the engine internally.
