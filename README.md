@@ -40,7 +40,7 @@ When you are done with `1.Data_labeling_and_preprocessing.ipynb` and `2.Object_d
 
 ### Run Triton Inference Server notebook
 
-To activate the Triton Server container, run:
+To activate the Triton Inference Server container, run:
 ```
 singularity run \
   --nv \
@@ -59,6 +59,19 @@ singularity run \
 You may now activate the Triton Client container with: `singularity run --fakeroot --nv -B ~/End-to-End-Computer-Vision/workspace:/workspace /mnt/shared/bootcamps/triton_client_e2ecv.simg jupyter-lab --no-browser --allow-root --ip=0.0.0.0 --port=8888 --NotebookApp.token="" --notebook-dir=/workspace`
 
 Then, open jupyter lab in browser: http://localhost:8888 and continue the lab by running `3.Model_deployment_with_Triton_Inference_Server.ipynb`.
+
+**Note**
+
+In a cluster environment, the `Triton Inference Server` container should be launched on the computing node(eg. dgx05) why the `Triton Client` container should be run on the login node (cpu). Therefore, within the notebook, url variable should be modified as follows:
+
+
+```
+assume you are on dgx05 then, replace
+
+url = "localhost:8000" with url = "dgx05:8000" 
+
+url = "localhost:8001" with url = "dgx05:8001"
+```
 
 As soon as you are done with that, shut down jupyter lab by selecting `File > Shut Down` and the Client container by typing `exit` or pressing `ctrl + d` in the terminal window. 
 
