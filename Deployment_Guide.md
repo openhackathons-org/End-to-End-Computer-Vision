@@ -93,7 +93,7 @@ pip install jupyterlab \
     tritonclient[all]
 ```
 
-** Run the Labs**
+**Run the Labs**
 
 Activate the conda launcher environment: `conda activate launcher`
     
