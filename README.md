@@ -39,7 +39,7 @@ A basic understanding of Deep Learning, Python programming, and familiarity with
 
 ## Deploying the Bootcamp materials:
 
-To deploy the Labs, please refer to the Deployment guide presented [here](https://github.com/programmah/End-to-End-Computer-Vision/blob/main/Deployment_Guide.md)
+To deploy the Labs, please refer to the Deployment guide presented [here](https://github.com/openhackathons-org/End-to-End-Computer-Vision/blob/main/Deployment_Guide.md)
 
 
 ## Attribution
